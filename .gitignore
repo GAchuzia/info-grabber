@@ -1,0 +1,4 @@
+venv
+venv/*
+info-grabber.ui
+temp.py
