@@ -12,7 +12,6 @@ import re
 import sys
 import docx2txt
 import pandas as pd
-import aspose.words as aw
 from docx2python import docx2python
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication,  QFileDialog
