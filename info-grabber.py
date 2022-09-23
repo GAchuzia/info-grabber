@@ -95,6 +95,30 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
     def submit_action_pressed(self):
         index = self.comboBox.currentIndex()
         if index == 0:
+            desktop_path = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Downloads')
+            download_path = desktop_path + "\Extracted_Images"
+            os.chdir(desktop_path)
+           
+            if os.path.exists(download_path) == True:
+                print("Folder 'Extracted_Images' already exist.")
+            else:
+                new_imagery_directory = os.mkdir('Extracted_Images')
+                print('A folder named "Extracted_Images" has been created.')
+            
+            imagery_directory = desktop_path + "Extracted_Images" 
+
+            filetypes = (('Docx files', '*docx'))
+            selected_files = QFileDialog.getOpenFileNames(self, 'Open file' '', "Docx files(*.docx)", options=QFileDialog.DontUseNativeDialog)
+
+            count = 1
+
+            for file in selected_files:
+                os.chdir(download_path) 
+                new_folders = os.mkdir(f'File {count} Images')
+                extracted_images = docx2txt.process(file, imagery_directory + '\'' + f'File {count} Images')
+                count += 1
+
+
             print("fizz")
            
 
