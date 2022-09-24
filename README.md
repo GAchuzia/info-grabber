@@ -1,5 +1,5 @@
 # **Info-Grabber**
-A small appliation that uses regex and pandas to extract specific data from  docx files and put them into a csv. It can also be used to extract images from multiple docx files.
+A small appliation made with Tkinter that uses regex and pandas to extract specific data from  docx files and put them into a csv. It can also be used to extract images from multiple docx files.
 
 
 **Older Version(s)** <br>
