@@ -13,10 +13,11 @@ root = tk.Tk() # Manages the components of the tkinter application
 canvas = tk.Canvas(root, width = 650, height = 150)
 canvas.grid(columnspan = 4, rowspan = 10)
 
-# Displays the app's instructions
+"""# Displays the app's instructions
 app_instructs = tk.Label(root, text = "Choose Action:", font = "Calibri")
 #app_instructs.place(relx = 0.5, rely = .7, anchor = "center")
-app_instructs.grid(column = 2, row = 1)
+app_instructs.grid(column = 1, row = 1)"""
+
 
 
 # Selects and save files for Building Data
@@ -143,22 +144,33 @@ def imageDataExtraction():
         count += 1
     imageDataText.set("Extract Survey Data") 
 
+# Renames selected files
+def renameFile():
+    pass
+
+
 # Gives the Building Data button its attributes
 buildingDataText = tk.StringVar()
 buildingDataBtn = tk.Button(root, textvariable = buildingDataText, command = buildingDataExtraction, font = "Calibri", bg = "#007940", fg = "white", height = 2, width = 20 )
 buildingDataText.set("Extract Building Data")
-buildingDataBtn.grid(column = 1, row =2)
+buildingDataBtn.grid(column = 1, row =2, pady=10, padx=10, sticky= "nsew")
 
 # Gives the Survey Reults Data  button its attributes
 imageDataText = tk.StringVar()
 imageDataBtn = tk.Button(root, textvariable = imageDataText, command = imageDataExtraction,font = "Calibri", bg = "#007940", fg = "white", height = 2, width = 20 )
 imageDataText.set("Extract Images")
-imageDataBtn.grid(column = 2, row = 2)
+imageDataBtn.grid(column = 2, row = 2, pady=10, padx=10, sticky= "nsew")
 
 # Gives the Survey Data button its attributes
 surveyDataText = tk.StringVar()
 surveyDataBtn = tk.Button(root, textvariable = surveyDataText, command = surveyDataExtraction,font = "Calibri", bg = "#007940", fg = "white", height = 2, width = 20 )
 surveyDataText.set("Extract Survey Data")
-surveyDataBtn.grid(column = 3, row = 2)
+surveyDataBtn.grid(column = 1, row = 3, pady=10, padx=10, sticky= "nsew")
+
+# Gives the Rename File button its attributes
+renameFileText = tk.StringVar()
+renameFileBtn = tk.Button(root, textvariable = renameFileText, command = renameFile,font = "Calibri", bg = "#007940", fg = "white", height = 2, width = 20 )
+renameFileText.set("Rename File(s)")
+renameFileBtn.grid(column = 2, row = 3, pady=10, padx=10, sticky= "nsew")
 
 root.mainloop() #Also manages all tkinter components, do NOT put any code below this: it won't work
