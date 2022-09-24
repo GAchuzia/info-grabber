@@ -28,8 +28,8 @@ app_instructs.grid(column = 2, row = 1)
 
 
 # Selects and save files for Building Data
-def buildingData_file_selection():
-    buildingData_text.set("loading...") # displays after clicking the browse button
+def buildingDataExtraction():
+    buildingDataText.set("loading...") # displays after clicking the browse button
     filetypes = [("DOCX Files", "*.docx")] #rename variable
     selected_files = askopenfilenames(filetypes = filetypes)
     
@@ -68,12 +68,12 @@ def buildingData_file_selection():
     df2export.to_csv(saving_path, index = False, line_terminator='\n')
     saving_path.close()
     print(df2export)
-    buildingData_text.set("Extract Building Data")
+    buildingDataText.set("Extract Building Data")
 
 
 # Selects and save files for Survey Data
-def surveyData_file_selection():
-    surveyData_text.set("loading...") 
+def surveyDataExtraction():
+    surveyDataText.set("loading...") 
     filetypes = [("DOCX Files", "*.docx")] 
     selected_files = askopenfilenames(filetypes = filetypes)
 
@@ -127,11 +127,11 @@ def surveyData_file_selection():
     df2export.to_csv(saving_path, index = False, line_terminator='\n')
     saving_path.close()
     print(df2export)
-    surveyData_text.set("Extract Survey Data") 
+    surveyDataText.set("Extract Survey Data") 
 
 # Selects and saves file for the Extracted Images
-def resultsData_file_selection():
-    imageData_text.set("loading...")
+def imageDataExtraction():
+    imageDataText.set("loading...")
     filetypes = [("DOCX Files", "*.docx")]
     selected_files = askopenfilenames(filetypes = filetypes)
     
@@ -158,21 +158,21 @@ def resultsData_file_selection():
 
 
 # Gives the Building Data button its attributes
-buildingData_text = tk.StringVar()
-buildingData_btn = tk.Button(root, textvariable = buildingData_text, command = buildingData_file_selection, font = "Calibri", bg = "#007940", fg = "white", height = 2, width = 20 )
-buildingData_text.set("Extract Building Data")
-buildingData_btn.grid(column = 1, row =2)
+buildingDataText = tk.StringVar()
+buildingDataBtn = tk.Button(root, textvariable = buildingDataText, command = buildingDataExtraction, font = "Calibri", bg = "#007940", fg = "white", height = 2, width = 20 )
+buildingDataText.set("Extract Building Data")
+buildingDataBtn.grid(column = 1, row =2)
 
 # Gives the Survey Reults Data  button its attributes
-imageData_text = tk.StringVar()
-imageData_btn = tk.Button(root, textvariable = imageData_text, command = resultsData_file_selection,font = "Calibri", bg = "#007940", fg = "white", height = 2, width = 20 )
-imageData_text.set("Extract Images")
-imageData_btn.grid(column = 2, row = 2)
+imageDataText = tk.StringVar()
+imageDataBtn = tk.Button(root, textvariable = imageDataText, command = imageDataExtraction,font = "Calibri", bg = "#007940", fg = "white", height = 2, width = 20 )
+imageDataText.set("Extract Images")
+imageDataBtn.grid(column = 2, row = 2)
 
 # Gives the Survey Data button its attributes
-surveyData_text = tk.StringVar()
-surveyData_btn = tk.Button(root, textvariable = surveyData_text, command = surveyData_file_selection,font = "Calibri", bg = "#007940", fg = "white", height = 2, width = 20 )
-surveyData_text.set("Extract Survey Data")
-surveyData_btn.grid(column = 3, row = 2)
+surveyDataText = tk.StringVar()
+surveyDataBtn = tk.Button(root, textvariable = surveyDataText, command = surveyDataExtraction,font = "Calibri", bg = "#007940", fg = "white", height = 2, width = 20 )
+surveyDataText.set("Extract Survey Data")
+surveyDataBtn.grid(column = 3, row = 2)
 
 root.mainloop() #Also manages all tkinter components, do NOT put any code below this: it won't work
