@@ -121,25 +121,27 @@ def imageDataExtraction():
     filetypes = [("DOCX Files", "*.docx")]
     selected_files = askopenfilenames(filetypes = filetypes)
     
+    # Locates the users download path
     desktop_path = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Downloads')
+    # The full path to a users download folder
     download_path = desktop_path + "\Extracted_Images\\"
     os.chdir(desktop_path)
            
+    # Error checking to see if "Extracted_Image" folder exists, creates said folder if not       
     if os.path.exists(download_path) == True:
         print("Folder 'Extracted_Images' already exist.")
     else:
         new_imagery_directory = os.mkdir('Extracted_Images')
         print('A folder named "Extracted_Images" has been created.')
-            
-    imagery_directory = desktop_path + "\Extracted_Images\\" 
-
+        
     count = 1
-
+    # Makes a new image folder in users download folder for each file selected
     for file in selected_files:
         os.chdir(download_path) 
         new_folders = os.mkdir(f'File {count} Images')
-        extracted_images = docx2txt.process(file, imagery_directory + "\\" + f'File {count} Images')
+        extracted_images = docx2txt.process(file, download_path + "\\" + f'File {count} Images')
         count += 1
+    imageDataText.set("Extract Survey Data") 
 
 # Gives the Building Data button its attributes
 buildingDataText = tk.StringVar()
