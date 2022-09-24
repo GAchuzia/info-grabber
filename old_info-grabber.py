@@ -6,6 +6,7 @@ import tkinter as tk
 from tkinter import filedialog
 from tkinter.filedialog import *
 from docx2python import docx2python
+
 """
 DISCLAIMER
 This is an older version of the application, and has some few bugs in it.
@@ -16,15 +17,16 @@ the Survey Data Results button does absolutely nothing (will be fixed in new app
 root = tk.Tk() # Manages the components of the tkinter application
 
 # Sets the width and height of the application
-canvas = tk.Canvas(root, width = 550, height = 150)
+canvas = tk.Canvas(root, width = 650, height = 150)
 canvas.grid(columnspan = 4, rowspan = 10)
 
 # Displays the app's instructions
-app_instructs = tk.Label(root, text = "Choose files to convert", font = "Calibri")
+app_instructs = tk.Label(root, text = "Choose Action:", font = "Calibri")
 #app_instructs.place(relx = 0.5, rely = .7, anchor = "center")
 app_instructs.grid(column = 2, row = 1)
 
-# Selects and save files for Building Data-----------------------------------------------------------------------------
+
+# Selects and save files for Building Data
 def buildingData_file_selection():
     buildingData_text.set("loading...") # displays after clicking the browse button
     filetypes = [("DOCX Files", "*.docx")] #rename variable
@@ -60,13 +62,15 @@ def buildingData_file_selection():
         else: 
             df2export = df2export.append(pd.DataFrame(new_dict), ignore_index = True) # Adds to the existing dataframe ()
             df2export.dropna()
+
     saving_path = filedialog.asksaveasfile(mode = 'w', defaultextension = ".csv")
     df2export.to_csv(saving_path, index = False, line_terminator='\n')
     saving_path.close()
     print(df2export)
-    buildingData_text.set("Building Data")
+    buildingData_text.set("Extract Building Data")
 
-# Selects and save files for Survey Data----------------------------------------------------------------------------
+
+# Selects and save files for Survey Data
 def surveyData_file_selection():
     surveyData_text.set("loading...") 
     filetypes = [("DOCX Files", "*.docx")] 
@@ -122,9 +126,9 @@ def surveyData_file_selection():
     df2export.to_csv(saving_path, index = False, line_terminator='\n')
     saving_path.close()
     print(df2export)
-    surveyData_text.set("Survey Data") 
+    surveyData_text.set("Extract Survey Data") 
 
-# Selects and saves file for the Survey Results Data----------------------------------------------------------------
+# Selects and saves file for the Extracted Images
 def resultsData_file_selection():
     surveyResultsData_text.set("loading...")
     filetypes = [("DOCX Files", "*.docx")]
@@ -133,27 +137,27 @@ def resultsData_file_selection():
 
     for file in selected_files:
         extracted_images = docx2txt.process(file, save_path) #Does NOT extract all images :(
-    surveyResultsData_text.set("Survey Data Results")
+    surveyResultsData_text.set("Extract Images")
 
 
 
 
 # Gives the Building Data button its attributes
 buildingData_text = tk.StringVar()
-buildingData_btn = tk.Button(root, textvariable = buildingData_text, command = buildingData_file_selection, font = "Calibri", bg = "#007940", fg = "white", height = 2, width = 15 )
-buildingData_text.set("Building Data")
+buildingData_btn = tk.Button(root, textvariable = buildingData_text, command = buildingData_file_selection, font = "Calibri", bg = "#007940", fg = "white", height = 2, width = 20 )
+buildingData_text.set("Extract Building Data")
 buildingData_btn.grid(column = 1, row =2)
 
 # Gives the Survey Reults Data  button its attributes
 surveyResultsData_text = tk.StringVar()
 surveyResultsData_btn = tk.Button(root, textvariable = surveyResultsData_text, command = resultsData_file_selection,font = "Calibri", bg = "#007940", fg = "white", height = 2, width = 20 )
-surveyResultsData_text.set("Survey Results Data")
+surveyResultsData_text.set("Extract Images")
 surveyResultsData_btn.grid(column = 2, row = 2)
 
 # Gives the Survey Data button its attributes
 surveyData_text = tk.StringVar()
-surveyData_btn = tk.Button(root, textvariable = surveyData_text, command = surveyData_file_selection,font = "Calibri", bg = "#007940", fg = "white", height = 2, width = 15 )
-surveyData_text.set("Survey Data")
+surveyData_btn = tk.Button(root, textvariable = surveyData_text, command = surveyData_file_selection,font = "Calibri", bg = "#007940", fg = "white", height = 2, width = 20 )
+surveyData_text.set("Extract Survey Data")
 surveyData_btn.grid(column = 3, row = 2)
 
 root.mainloop() #Also manages all tkinter components, do NOT put any code below this: it won't work
