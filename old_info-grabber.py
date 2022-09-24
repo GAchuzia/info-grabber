@@ -3,17 +3,9 @@ import re
 import docx2txt
 import pandas as pd
 import tkinter as tk
-
 from tkinter import filedialog
 from tkinter.filedialog import *
 from docx2python import docx2python
-
-"""
-DISCLAIMER
-This is an older version of the application, and has some few bugs in it.
-As noted by DJ, the Survey Data button is not working properly (will be fixed!) and
-the Survey Data Results button does absolutely nothing (will be fixed in new application). 
-"""
 
 root = tk.Tk() # Manages the components of the tkinter application
 
