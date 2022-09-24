@@ -1,3 +1,4 @@
+import os
 import re
 import docx2txt
 import pandas as pd
@@ -130,15 +131,29 @@ def surveyData_file_selection():
 
 # Selects and saves file for the Extracted Images
 def resultsData_file_selection():
-    surveyResultsData_text.set("loading...")
+    imageData_text.set("loading...")
     filetypes = [("DOCX Files", "*.docx")]
     selected_files = askopenfilenames(filetypes = filetypes)
-    save_path = "docx2sql_project\Images"
+    
+    desktop_path = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Downloads')
+    download_path = desktop_path + "\Extracted_Images\\"
+    os.chdir(desktop_path)
+           
+    if os.path.exists(download_path) == True:
+        print("Folder 'Extracted_Images' already exist.")
+    else:
+        new_imagery_directory = os.mkdir('Extracted_Images')
+        print('A folder named "Extracted_Images" has been created.')
+            
+    imagery_directory = desktop_path + "\Extracted_Images\\" 
+
+    count = 1
 
     for file in selected_files:
-        extracted_images = docx2txt.process(file, save_path) #Does NOT extract all images :(
-    surveyResultsData_text.set("Extract Images")
-
+        os.chdir(download_path) 
+        new_folders = os.mkdir(f'File {count} Images')
+        extracted_images = docx2txt.process(file, imagery_directory + "\\" + f'File {count} Images')
+        count += 1
 
 
 
@@ -149,10 +164,10 @@ buildingData_text.set("Extract Building Data")
 buildingData_btn.grid(column = 1, row =2)
 
 # Gives the Survey Reults Data  button its attributes
-surveyResultsData_text = tk.StringVar()
-surveyResultsData_btn = tk.Button(root, textvariable = surveyResultsData_text, command = resultsData_file_selection,font = "Calibri", bg = "#007940", fg = "white", height = 2, width = 20 )
-surveyResultsData_text.set("Extract Images")
-surveyResultsData_btn.grid(column = 2, row = 2)
+imageData_text = tk.StringVar()
+imageData_btn = tk.Button(root, textvariable = imageData_text, command = resultsData_file_selection,font = "Calibri", bg = "#007940", fg = "white", height = 2, width = 20 )
+imageData_text.set("Extract Images")
+imageData_btn.grid(column = 2, row = 2)
 
 # Gives the Survey Data button its attributes
 surveyData_text = tk.StringVar()
