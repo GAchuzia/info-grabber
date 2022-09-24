@@ -85,9 +85,6 @@ def surveyDataExtraction():
         wind_direction =  re.findall("(?<=Wind Direction\s\s)(.*)(?=ROOF CONDITION:\s\s)|(?<=Wind Direction)(.*)(?=\s\sBuilding Photo)",formatted_filecontents)
         construction_date =  re.findall("(?<=of Construction\s\s)(.*)(?=Roof Type)",formatted_filecontents)
         roof_access =  re.findall("(?<=Roof Access\s\s)(.*)(?<=Roof hatch)",formatted_filecontents) # Not working properly
-        #roof_types =  re.findall("(?<=Roof Type\s\s)(.*)(?=Roof Access)",formatted_filecontents)
-        #roof_condition = re.findall( ,formatted_filecontents)
-        #roof_life = re.findall(,formatted_filecontents)
         
         new_dict = {
                     "surveyCode": str(survey_code).strip("[]").strip("()").strip("''"),
@@ -102,9 +99,6 @@ def surveyDataExtraction():
                     "Wind Direction": str(wind_direction).strip("[]").strip("()").strip("''"),
                     "ageConstruction": str(construction_date).strip("[]").strip("()").strip("''"),
                     "accessRoof": str(roof_access).strip("[]").strip("()").strip("''"),
-                   # "ageRoof": str().strip("[]").strip("()"),
-                   # "conditionRoof": str().strip("[]").strip("()"),
-                   # "remainingLifeRoof": str().strip("[]").strip("()"),
                     }          
 
         new_dict = {k: [v] for k, v in new_dict.items()}
@@ -146,8 +140,6 @@ def imageDataExtraction():
         new_folders = os.mkdir(f'File {count} Images')
         extracted_images = docx2txt.process(file, imagery_directory + "\\" + f'File {count} Images')
         count += 1
-
-
 
 # Gives the Building Data button its attributes
 buildingDataText = tk.StringVar()
