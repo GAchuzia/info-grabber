@@ -11,7 +11,7 @@ root = tk.Tk() # Manages the components of the tkinter application
 
 # Sets the width and height of the application
 canvas = tk.Canvas(root, width = 540, height = 150)
-canvas.grid(columnspan = 4, rowspan = 10)
+canvas.grid(columnspan = 2, rowspan = 2, )
 
 """# Displays the app's instructions
 app_instructs = tk.Label(root, text = "Choose Action:", font = "Calibri")
@@ -153,24 +153,24 @@ def renameFile():
 buildingDataText = tk.StringVar()
 buildingDataBtn = tk.Button(root, textvariable = buildingDataText, command = buildingDataExtraction, font = "Calibri", bg = "#007940", fg = "white", height = 1, width = 12 )
 buildingDataText.set("Extract Building Data")
-buildingDataBtn.grid(column = 1, row =2, pady=10, padx=10, sticky= "nsew")
+buildingDataBtn.grid(column = 0, row =0, pady=6, padx=6, sticky= "nsew")
 
 # Gives the Survey Reults Data  button its attributes
 imageDataText = tk.StringVar()
 imageDataBtn = tk.Button(root, textvariable = imageDataText, command = imageDataExtraction,font = "Calibri", bg = "#007940", fg = "white", height = 1, width = 12 )
 imageDataText.set("Extract Images")
-imageDataBtn.grid(column = 2, row = 2, pady=10, padx=10, sticky= "nsew")
+imageDataBtn.grid(column = 1, row = 0, pady=6, padx=6, sticky= "nsew")
 
 # Gives the Survey Data button its attributes
 surveyDataText = tk.StringVar()
 surveyDataBtn = tk.Button(root, textvariable = surveyDataText, command = surveyDataExtraction,font = "Calibri", bg = "#007940", fg = "white", height = 1, width = 12 )
 surveyDataText.set("Extract Survey Data")
-surveyDataBtn.grid(column = 1, row = 3, pady=10, padx=10, sticky= "nsew")
+surveyDataBtn.grid(column = 0, row = 1, pady=6, padx=6, sticky= "nsew")
 
 # Gives the Rename File button its attributes
 renameFileText = tk.StringVar()
 renameFileBtn = tk.Button(root, textvariable = renameFileText, command = renameFile,font = "Calibri", bg = "#007940", fg = "white", height = 1, width = 12 )
 renameFileText.set("Rename File(s)")
-renameFileBtn.grid(column = 2, row = 3, pady=10, padx=10, sticky= "nsew")
+renameFileBtn.grid(column = 1, row = 1, pady=6, padx=6, sticky= "nsew")
 
 root.mainloop() #Also manages all tkinter components, do NOT put any code below this: it won't work
