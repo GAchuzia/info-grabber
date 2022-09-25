@@ -13,11 +13,6 @@ root.title("Info-Grabber")
 canvas = tk.Canvas(root, width = 540, height = 150)
 canvas.grid(columnspan = 2, rowspan = 2, )
 
-"""# Displays the app's instructions
-app_instructs = tk.Label(root, text = "Choose Action:", font = "Calibri")
-#app_instructs.place(relx = 0.5, rely = .7, anchor = "center")
-app_instructs.grid(column = 1, row = 1)"""
-
 
 
 # Selects and save files for Building Data
@@ -62,6 +57,7 @@ def buildingDataExtraction():
     saving_path.close()
     print(df2export)
     buildingDataText.set("Extract Building Data")
+
 
 
 # Selects and save files for Survey Data
@@ -116,6 +112,8 @@ def surveyDataExtraction():
     print(df2export)
     surveyDataText.set("Extract Survey Data") 
 
+
+
 # Selects and saves file for the Extracted Images
 def imageDataExtraction():
     imageDataText.set("loading...")
@@ -144,9 +142,12 @@ def imageDataExtraction():
         count += 1
     imageDataText.set("Extract Survey Data") 
 
+
+
 # Renames selected files
 def renameFile():
     pass
+
 
 
 # Gives the Building Data button its attributes
