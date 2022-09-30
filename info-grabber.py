@@ -125,21 +125,22 @@ def imageDataExtraction():
     # The full path to a users download folder
     download_path = desktop_path + "\Extracted_Images\\"
     os.chdir(desktop_path)
-           
+
     # Error checking to see if "Extracted_Image" folder exists, creates said folder if not       
     if os.path.exists(download_path) == True:
-        print("Folder 'Extracted_Images' already exist.")
-    else:
-        new_imagery_directory = os.mkdir('Extracted_Images')
-        print('A folder named "Extracted_Images" has been created.')
-        
-    count = 1
+        print("Image folder already exists.")
+    else: 
+        new_imagery_directory = os.mkdir(f'Extracted_Images')
+        print('A new image folder has been created.')
+     
+    counter = 1
+
     # Makes a new image folder in users download folder for each file selected
-    for file in selected_files:
+    for file in selected_files: 
         os.chdir(download_path) 
-        new_folders = os.mkdir(f'File {count} Images')
-        extracted_images = docx2txt.process(file, download_path + "\\" + f'File {count} Images')
-        count += 1
+        new_folders = os.mkdir(f'File {counter} Images')
+        extracted_images = docx2txt.process(file, download_path  + f'File {counter} Images')
+        counter += 1
     imageDataText.set("Extract Survey Data") 
 
 
@@ -156,7 +157,7 @@ buildingDataBtn = tk.Button(root, textvariable = buildingDataText, command = bui
 buildingDataText.set("Extract Building Data")
 buildingDataBtn.grid(column = 0, row =0, pady=6, padx=6, sticky= "nsew")
 
-# Gives the Survey Reults Data  button its attributes
+# Gives the Extract Images  button its attributes
 imageDataText = tk.StringVar()
 imageDataBtn = tk.Button(root, textvariable = imageDataText, command = imageDataExtraction,font = "Calibri", bg = "#007940", fg = "white", height = 1, width = 12 )
 imageDataText.set("Extract Images")
