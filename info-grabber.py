@@ -181,8 +181,8 @@ src_dir = tk.StringVar()
 rename_file_label = tk.Label(root, text="Rename File Here:", anchor="e",  pady=6, padx=6)
 rename_file_label.grid(column = 0, row = 2, pady=1, padx=6,  columnspan=2)
 
-input_path_area = tk.Entry(root, textvariable = src_dir, font = "Calibri",  width = 2)
-input_path_area.grid(column = 0, row = 3, pady=3, padx=4, sticky='nsew', columnspan=2, ipady=10)
+input_path_area = tk.Entry(root, textvariable = src_dir, font = "Calibri",  width = 30)
+input_path_area.grid(column = 0, row = 3, pady=3, padx=10, sticky='nsew', columnspan=2, ipady=10)
 
 renameFileBtn = tk.Button(root, textvariable = renameFileText, command = renameFile,font = "Calibri", bg = "#007940", fg = "white", height = 2, width = 64 )
 renameFileText.set("Rename File(s)")
