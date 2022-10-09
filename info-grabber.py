@@ -9,6 +9,7 @@ from tkinter.filedialog import *
 from docx2python import docx2python
 
 root = tk.Tk() # Manages the components of the tkinter application
+root.resizable(width=False, height=False)
 root.title("Info-Grabber")
 # Sets the width and height of the application
 canvas = tk.Canvas(root, width = 540, height = 150)
