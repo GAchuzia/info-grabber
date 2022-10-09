@@ -3,6 +3,7 @@ import re
 import docx2txt
 import pandas as pd
 import tkinter as tk
+from tkinter import *
 from tkinter import filedialog
 from tkinter.filedialog import *
 from docx2python import docx2python
@@ -147,9 +148,14 @@ def imageDataExtraction():
 
 # Renames selected files
 def renameFile():
-    pass
+    name_file_label = tk.Label(text=input_path_area.get())
+    new_file_name = input_path_area.get()
 
-
+    filetypes = [("All Files", "*.*")]
+    selected_files = askopenfilenames(filetypes = filetypes)
+    
+    for file in selected_files: 
+        pass
 
 # Gives the Building Data button its attributes
 buildingDataText = tk.StringVar()
@@ -159,9 +165,9 @@ buildingDataBtn.grid(column = 0, row =0, pady=6, padx=6)
 
 # Gives the Extract Images  button its attributes
 imageDataText = tk.StringVar()
-imageDataBtn = tk.Button(root, textvariable = imageDataText, command = imageDataExtraction,font = "Calibri", bg = "#007940", fg = "white", height = 2, width = 62 )
+imageDataBtn = tk.Button(root, textvariable = imageDataText, command = imageDataExtraction,font = "Calibri", bg = "#007940", fg = "white", height = 2, width = 64 )
 imageDataText.set("Extract Images")
-imageDataBtn.grid(column = 0, row = 1, pady=6, padx=4, columnspan=2)
+imageDataBtn.grid(column = 0, row = 1, pady=3, padx=4, columnspan=2)
 
 # Gives the Survey Data button its attributes
 surveyDataText = tk.StringVar()
@@ -169,14 +175,16 @@ surveyDataBtn = tk.Button(root, textvariable = surveyDataText, command = surveyD
 surveyDataText.set("Extract Survey Data")
 surveyDataBtn.grid(column = 1, row = 0, pady=6, padx=6)
 
-# Gives the Rename File button its attributes
+# Gives the Rename File button (and user input text field) its attributes
 renameFileText = tk.StringVar()
 src_dir = tk.StringVar()
-rename_file_label = tk.Label(root, text="Rename File Here:", bg='white', pady=6, padx=6)
-rename_file_label.grid(column = 0, row = 4, pady=6, padx=6,  columnspan=2)
-input_path_area = tk.Entry(root, textvariable = src_dir, font = "Calibri",  width = 30)
-input_path_area.grid(column = 0, row = 3, pady=6, padx=6, sticky='nsew', columnspan=2)
-renameFileBtn = tk.Button(root, textvariable = renameFileText, command = renameFile,font = "Calibri", bg = "#007940", fg = "white", height = 1, width = 62 )
+rename_file_label = tk.Label(root, text="Rename File Here:", anchor="e",  pady=6, padx=6)
+rename_file_label.grid(column = 0, row = 2, pady=1, padx=6,  columnspan=2)
+
+input_path_area = tk.Entry(root, textvariable = src_dir, font = "Calibri",  width = 2)
+input_path_area.grid(column = 0, row = 3, pady=3, padx=4, sticky='nsew', columnspan=2, ipady=10)
+
+renameFileBtn = tk.Button(root, textvariable = renameFileText, command = renameFile,font = "Calibri", bg = "#007940", fg = "white", height = 2, width = 64 )
 renameFileText.set("Rename File(s)")
 renameFileBtn.grid(column = 0, row = 4, pady=6, padx=6,  columnspan=2)
 
