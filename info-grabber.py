@@ -61,7 +61,7 @@ def buildingDataExtraction():
     saving_path.close()
     print(df2export)
     buildingDataText.set("Extract Building Data")
-
+    messagebox.showinfo("Building data extracted successfully.")
 
 
 # Selects and save files for Survey Data
@@ -115,7 +115,7 @@ def surveyDataExtraction():
     saving_path.close()
     print(df2export)
     surveyDataText.set("Extract Survey Data") 
-
+    messagebox.showinfo("Survey data extracted successfully.")
 
 
 # Selects and saves file for the Extracted Images
@@ -146,7 +146,7 @@ def imageDataExtraction():
         extracted_images = docx2txt.process(file, download_path  + f'File {counter} Images')
         counter += 1
     imageDataText.set("Extract Survey Data") 
-
+    messagebox.showinfo("Images extracted successfully.")
 
 
 # Renames selected files
