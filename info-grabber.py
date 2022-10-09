@@ -164,17 +164,17 @@ buildingDataBtn = tk.Button(root, textvariable = buildingDataText, command = bui
 buildingDataText.set("Extract Building Data")
 buildingDataBtn.grid(column = 0, row =0, pady=2, padx=6)
 
-# Gives the Extract Images  button its attributes
-imageDataText = tk.StringVar()
-imageDataBtn = tk.Button(root, textvariable = imageDataText, command = imageDataExtraction,font = "Calibri", bg = "#007940", fg = "white", height = 2, width = 64 )
-imageDataText.set("Extract Images")
-imageDataBtn.grid(column = 0, row = 1, pady=2, padx=4, columnspan=2)
-
 # Gives the Survey Data button its attributes
 surveyDataText = tk.StringVar()
 surveyDataBtn = tk.Button(root, textvariable = surveyDataText, command = surveyDataExtraction,font = "Calibri", bg = "#007940", fg = "white", height = 2, width = 30 )
 surveyDataText.set("Extract Survey Data")
 surveyDataBtn.grid(column = 1, row = 0, pady=2, padx=6)
+
+# Gives the Extract Images  button its attributes
+imageDataText = tk.StringVar()
+imageDataBtn = tk.Button(root, textvariable = imageDataText, command = imageDataExtraction,font = "Calibri", bg = "#007940", fg = "white", height = 2, width = 64 )
+imageDataText.set("Extract Images")
+imageDataBtn.grid(column = 0, row = 1, pady=2, padx=4, columnspan=2)
 
 # Gives the Rename File button (and user input text field) its attributes
 renameFileText = tk.StringVar()
