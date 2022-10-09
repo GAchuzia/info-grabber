@@ -161,31 +161,31 @@ def renameFile():
 buildingDataText = tk.StringVar()
 buildingDataBtn = tk.Button(root, textvariable = buildingDataText, command = buildingDataExtraction, font = "Calibri", bg = "#007940", fg = "white", height = 2, width = 30 )
 buildingDataText.set("Extract Building Data")
-buildingDataBtn.grid(column = 0, row =0, pady=6, padx=6)
+buildingDataBtn.grid(column = 0, row =0, pady=2, padx=6)
 
 # Gives the Extract Images  button its attributes
 imageDataText = tk.StringVar()
 imageDataBtn = tk.Button(root, textvariable = imageDataText, command = imageDataExtraction,font = "Calibri", bg = "#007940", fg = "white", height = 2, width = 64 )
 imageDataText.set("Extract Images")
-imageDataBtn.grid(column = 0, row = 1, pady=3, padx=4, columnspan=2)
+imageDataBtn.grid(column = 0, row = 1, pady=2, padx=4, columnspan=2)
 
 # Gives the Survey Data button its attributes
 surveyDataText = tk.StringVar()
 surveyDataBtn = tk.Button(root, textvariable = surveyDataText, command = surveyDataExtraction,font = "Calibri", bg = "#007940", fg = "white", height = 2, width = 30 )
 surveyDataText.set("Extract Survey Data")
-surveyDataBtn.grid(column = 1, row = 0, pady=6, padx=6)
+surveyDataBtn.grid(column = 1, row = 0, pady=2, padx=6)
 
 # Gives the Rename File button (and user input text field) its attributes
 renameFileText = tk.StringVar()
 src_dir = tk.StringVar()
-rename_file_label = tk.Label(root, text="Rename File Here:", anchor="e",  pady=6, padx=6)
-rename_file_label.grid(column = 0, row = 2, pady=1, padx=6,  columnspan=2)
+rename_file_label = tk.Label(root, text="Rename File Here:", anchor="e")
+rename_file_label.grid(column = 0, row = 2, pady=2, padx=6,  columnspan=2)
 
 input_path_area = tk.Entry(root, textvariable = src_dir, font = "Calibri",  width = 30)
-input_path_area.grid(column = 0, row = 3, pady=3, padx=10, sticky='nsew', columnspan=2, ipady=10)
+input_path_area.grid(column = 0, row = 3, pady=2, padx=10, sticky='nsew', columnspan=2, ipady=10)
 
 renameFileBtn = tk.Button(root, textvariable = renameFileText, command = renameFile,font = "Calibri", bg = "#007940", fg = "white", height = 2, width = 64 )
 renameFileText.set("Rename File(s)")
-renameFileBtn.grid(column = 0, row = 4, pady=6, padx=6,  columnspan=2)
+renameFileBtn.grid(column = 0, row = 4, pady=10, padx=6,  columnspan=2)
 
 root.mainloop() #Also manages all tkinter components, do NOT put any code below this: it won't work
