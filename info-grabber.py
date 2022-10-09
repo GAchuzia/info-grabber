@@ -1,9 +1,11 @@
 import os
 import re
 import docx2txt
+import cv2
 import pandas as pd
 import tkinter as tk
 from tkinter import *
+from tkinter import messagebox
 from tkinter import filedialog
 from tkinter.filedialog import *
 from docx2python import docx2python
@@ -153,10 +155,32 @@ def renameFile():
     new_file_name = input_path_area.get()
 
     filetypes = [("All Files", "*.*")]
-    selected_files = askopenfilenames(filetypes = filetypes)
+    folder_selected = filedialog.askdirectory()
     
-    for file in selected_files: 
-        pass
+    source = src_dir.get()
+    src_dir.set("")
+
+    input_folder = folder_selected
+    i = 0
+     
+    for old_file in os.listdir(input_folder):
+ 
+        file_name = os.path.splitext(old_file)[0]
+        extension = os.path.splitext(old_file)[1]
+ 
+        if extension == ".txt":
+            src = os.path.join(input_folder, old_file)
+            img = cv2.imread(src)
+
+            dst = source + '-' + str(i)  + ".txt"
+            dst = os.path.join(input_folder, dst)
+    
+            # rename() function will rename all the files
+            os.rename(src, dst)
+            i += 1
+             
+    messagebox.showinfo("All files renamed successfully.")
+ 
 
 # Gives the Building Data button its attributes
 buildingDataText = tk.StringVar()
