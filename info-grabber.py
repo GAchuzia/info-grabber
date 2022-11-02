@@ -178,7 +178,7 @@ def renameFile():
             # rename() function will rename all the files
             os.rename(src, dst)
             i += 1
-        
+        #make a function and pass in file name and extension
              
     messagebox.showinfo("All files renamed successfully.")
  
