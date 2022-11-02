@@ -168,11 +168,11 @@ def renameFile():
         file_name = os.path.splitext(old_file)[0]
         extension = os.path.splitext(old_file)[1]
  
-        if extension == ".docx" :
+        if extension == ".JPG" :
             src = os.path.join(input_folder, old_file)
             img = cv2.imread(src)
 
-            dst = source + '-' + str(i)  + ".docx"
+            dst = source + '-' + str(i)  + ".JPG"
             dst = os.path.join(input_folder, dst)
     
             # rename() function will rename all the files
