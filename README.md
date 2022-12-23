@@ -5,7 +5,5 @@ A general purpose tkinter application that can manipulate data in docx files
 **Disclaimer** ⚠️<br>
 The application is specifically taylored to extracting information from Roof Maintenance Solutions Drone Survey Reports and will most likely be ineffective when paired with other docx files.
 
-Also, this is my first "real" project so don't judge my code too hard 😅
-
 **Technologies & Tools** <br>
 <img height="32" width="32" src="media/python.svg"/>
