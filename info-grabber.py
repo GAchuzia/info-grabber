@@ -11,8 +11,41 @@ from tkinter import filedialog
 from tkinter.filedialog import *
 from docx2python import docx2python
 
-'''
+# Constants
 
+# Establish appearance of the application
+customtkinter.set_appearance_mode("system")
+customtkinter.set_default_color_theme("dark-blue")
+
+root = customtkinter.CTk()
+root.geometry("600x450")
+root.title("Info-Grabber")
+
+# Application functions
+
+def on_menu_select():
+    pass
+
+# Establish the frames of the application
+frame = customtkinter.CTkFrame(master = root)
+frame.pack(pady = 10, padx = 10, fill = "both", expand = True)
+
+menu_var = customtkinter.CTk
+option_menu = customtkinter.CTkOptionMenu(frame, values = ["Get Images", "Rename Files", "Get Building Data", "Get Survey Data"], anchor="center",width = 600, command = on_menu_select, )
+option_menu.pack(pady = 5, padx = 10)
+
+submit_btn = customtkinter.CTkButton(master = frame, text = 'SUBMIT', width = 600)
+submit_btn.pack(pady = 5, padx = 10)
+
+text_box = customtkinter.CTkTextbox(master = frame, width = 400)
+info_box = Text(master=frame,wrap=WORD, height= 100, width = 100, font=("Computer Modern", 12)) 
+info_box.pack( pady = 10, padx=10)
+info_box.insert("0.0", 'Select a dropdown menu option and press submit to use application\n\n')
+info_box.configure(state="disabled")
+
+root.mainloop()
+
+'''
 root = tk.Tk() # Manages the components of the tkinter application
 root.resizable(width=False, height=False)
 root.title("Info-Grabber")
