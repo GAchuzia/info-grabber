@@ -12,6 +12,7 @@ from tkinter.filedialog import *
 from docx2python import docx2python
 
 # Constants
+ROOF_TYPES = ["4-Ply","Single ply", "Shingled","Modified Bitumen"]
 
 # Establish appearance of the application
 customtkinter.set_appearance_mode("system")
@@ -23,9 +24,58 @@ root.title("Info-Grabber")
 
 # Application functions
 
+# Creates a new folder name if wanted folder name already exists
+def nextnonexistent(f):
+    fnew = f
+    root, ext = os.path.splitext(f)
+    i = 0
+    while os.path.exists(fnew):
+        i += 1
+        fnew = '%s_%i%s' % (root, i, ext)
+    return fnew
+
+# Selects and saves file for extracted images
 def get_images():
-    # code to get images goes here
-    pass
+    filetypes = [("DOCX Files", "*.docx")]
+    selected_files = askopenfilenames(filetypes = filetypes)  
+
+    # Locates the users download path
+    desktop_path = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Downloads') # The full path to a users download folder
+    os.chdir(desktop_path) # changes directory to the users downloads folder
+    download_path = desktop_path + "\\" + nextnonexistent("Extracted_Images") # The path we want to create for extracted images
+    os.mkdir(download_path)
+    os.chdir(download_path) 
+
+    counter  = 0
+    roof_types_seen = set()
+
+    # Finds the roof type for a given file
+    for file in selected_files:
+        file_contents = docx2txt.process(file)
+        formatted_filecontents = file_contents.replace("\n"," ")
+        survey_rooftype = re.findall("(?<=Roof Type\s\s)(.*)(?=\s\sRoof Access)", formatted_filecontents)
+        survey_rooftype = str(survey_rooftype).strip("[]").strip("'").strip()
+        counter += 1
+
+    # Checks each survey for its roof type and extracts and organizes images into folders based on roof type
+        if survey_rooftype not in ROOF_TYPES:
+            survey_rooftype = "Unknown Rooftype"
+
+        file_path = f"{survey_rooftype}\\File {counter} Images"
+        os.makedirs(file_path)
+        extracted_imgs = docx2txt.process(file, download_path +"\\" + file_path)
+
+        roof_types_seen.add(survey_rooftype)  
+           
+    # Text displayed whenever "Get Images" button is clicked
+    def image_info():
+        info_box.insert("end", 
+        f"New folder created in {os.getlogin()}'s Downloads folder\n"
+        f'Number of selected files: {len(selected_files)}\n'
+        f'Roof types: {str(roof_types_seen).strip("{}").strip("")} \n\n')
+        info_box.configure(state="disabled")
+    info_box.configure(state="normal")
+    image_info()
 
 def rename_files():
     # code to rename files goes here
