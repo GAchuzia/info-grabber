@@ -4,12 +4,14 @@ import cv2
 import docx2txt
 import pandas as pd
 import tkinter as tk
+import customtkinter
 from tkinter import *
 from tkinter import messagebox
+from tkinter import filedialog
 from tkinter.filedialog import *
-import tkinter.scrolledtext as st
 from docx2python import docx2python
 
+'''
 
 root = tk.Tk() # Manages the components of the tkinter application
 root.resizable(width=False, height=False)
@@ -216,3 +218,4 @@ renameFileText.set("Rename File(s)")
 renameFileBtn.grid(column = 0, row = 4, pady=10, padx=6,  columnspan=2)
 
 root.mainloop() #Also manages all tkinter components, do NOT put any code below this: it won't work
+'''
