@@ -1,14 +1,15 @@
 import os
 import re
-import docx2txt
 import cv2
+import docx2txt
 import pandas as pd
 import tkinter as tk
 from tkinter import *
 from tkinter import messagebox
-from tkinter import filedialog
 from tkinter.filedialog import *
+import tkinter.scrolledtext as st
 from docx2python import docx2python
+
 
 root = tk.Tk() # Manages the components of the tkinter application
 root.resizable(width=False, height=False)
