@@ -23,8 +23,31 @@ root.title("Info-Grabber")
 
 # Application functions
 
-def on_menu_select():
+def get_images():
+    # code to get images goes here
     pass
+
+def rename_files():
+    # code to rename files goes here
+    pass
+
+def get_building_data():
+    # code to get building data goes here
+    pass
+
+def get_survey_data():
+    # code to get survey data goes here
+    pass
+
+def on_menu_select(selection):
+    if selection == "Get Images":
+        get_images()
+    elif selection == "Rename Files":
+        rename_files()
+    elif selection == "Get Building Data":
+        get_building_data()
+    elif selection == "Get Survey Data":
+        get_survey_data()
 
 # Establish the frames of the application
 frame = customtkinter.CTkFrame(master = root)
@@ -33,9 +56,6 @@ frame.pack(pady = 10, padx = 10, fill = "both", expand = True)
 menu_var = customtkinter.CTk
 option_menu = customtkinter.CTkOptionMenu(frame, values = ["Get Images", "Rename Files", "Get Building Data", "Get Survey Data"], anchor="center",width = 600, command = on_menu_select, )
 option_menu.pack(pady = 5, padx = 10)
-
-submit_btn = customtkinter.CTkButton(master = frame, text = 'SUBMIT', width = 600)
-submit_btn.pack(pady = 5, padx = 10)
 
 text_box = customtkinter.CTkTextbox(master = frame, width = 400)
 info_box = Text(master=frame,wrap=WORD, height= 100, width = 100, font=("Computer Modern", 12)) 
