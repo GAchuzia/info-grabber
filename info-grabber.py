@@ -135,6 +135,54 @@ def get_survey_data():
     info_box.insert("end", f"Get Survey Data option selected\n")
     info_box.configure(state="disabled")
 
+    filetypes = [("DOCX Files", "*.docx")] 
+    selected_files = askopenfilenames(filetypes = filetypes)
+
+    first_time = True 
+    for file in selected_files:
+        file_contents = docx2txt.process(file)
+        formatted_filecontents = file_contents.replace("\n"," ")
+
+        survey_code = re.findall("(?<=Job #\s\s)(.*)(?=P.O.#)",formatted_filecontents)
+        job_date =  re.findall("(?<=Date of Job\s\s)(.*)(?<=2022)|(?<=Date of Scan\s\s)(.*)(?<=2022)|(?<=Date of Maintenance)(.*)(?<=2022)",formatted_filecontents)
+        specified_work =  re.findall("(?<=d Work\s\s)(.*)(?=\s\sPilot)|(?<=Work\s\s)(.*)(?=\s\sLead)",formatted_filecontents)
+        file_pilot =  re.findall("(?<=Lead Technicians\s\s)(.*)(?=\s\sValidated By)|(?<=Pilot)(.*)(?=\s\sValidated By)",formatted_filecontents)
+        validated_by =  re.findall("(?<=Validated By\s\s)(.*)(?=\s\sWEATHER CONDITIONS:)",formatted_filecontents)
+        temp_external =  re.findall("(?<=Temperature\s\s)(.*)(?=\sCloud Cover)|(?<=Exterior Temperature\s\s)(.*)(?<=\s\sNot Applicable  Interior Temperature)",formatted_filecontents) #Not Working Properly
+        cloud_cover =  re.findall("(?<=Cloud Cover\s\s)(.*)(?=\s\sWind Condition)|(?<=Cloud Cover\s\s)(.*)(?=Wind Speed)",formatted_filecontents)
+        wind_condition_speed =  re.findall("(?<=Wind Speed\s\s)(.*)(?=Wind Direction)|(?<=Wind Conditions\s\s)(.*)(?=Wind Direction)|(?<=Wind Conditions\s\s)(.*)(?=ROOF CONDITION:\s\s)",formatted_filecontents)
+        wind_direction =  re.findall("(?<=Wind Direction\s\s)(.*)(?=ROOF CONDITION:\s\s)|(?<=Wind Direction)(.*)(?=\s\sBuilding Photo)",formatted_filecontents)
+        construction_date =  re.findall("(?<=of Construction\s\s)(.*)(?=Roof Type)",formatted_filecontents)
+        roof_access =  re.findall("(?<=Roof Access\s\s)(.*)(?<=Roof hatch)",formatted_filecontents) # Not working properly
+        
+        new_dict = {
+                    "surveyCode": str(survey_code).strip("[]").strip("()").strip("''"),
+                    "jobDate": str(job_date).strip("[]").strip("()"), 
+                    "specifiedWork": str(specified_work).strip("[]").strip("()"),
+                    "technician": str(file_pilot).strip("[]").strip("()"), 
+                    "validator": str(validated_by).strip("[]").strip("()").strip("''"), 
+                   # "typeRoof": str(roof_types).strip("[]").strip("()"),
+                    "tempExternal": str(temp_external).strip("[]").strip("()").strip("''"), 
+                    "cloud": str(cloud_cover).strip("[]").strip("()").strip("''"),
+                    "Wind Condition": str(wind_condition_speed).strip("[]").strip("()").strip("''"),
+                    "Wind Direction": str(wind_direction).strip("[]").strip("()").strip("''"),
+                    "ageConstruction": str(construction_date).strip("[]").strip("()").strip("''"),
+                    "accessRoof": str(roof_access).strip("[]").strip("()").strip("''"),
+                    }          
+
+        new_dict = {k: [v] for k, v in new_dict.items()}
+        if first_time:
+            first_time = False
+            df2export = pd.DataFrame.from_dict(new_dict) 
+        else: 
+            df2export = df2export.append(pd.DataFrame(new_dict), ignore_index = True) 
+            df2export.dropna()
+        
+    saving_path = filedialog.asksaveasfile(mode = 'w', defaultextension = ".csv")
+    df2export.to_csv(saving_path, index = False, line_terminator='\n')
+    saving_path.close()
+    print(df2export)
+
 def on_menu_select(selection):
     if selection == "Get Images":
         get_images()
