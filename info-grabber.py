@@ -36,6 +36,11 @@ def nextnonexistent(f):
 
 # Selects and saves file for extracted images
 def get_images():
+    
+    info_box.configure(state="normal")
+    info_box.insert("end", f"Get Images option selected\n")
+    info_box.configure(state="disabled")
+
     filetypes = [("DOCX Files", "*.docx")]
     selected_files = askopenfilenames(filetypes = filetypes)  
 
