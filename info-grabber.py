@@ -36,7 +36,7 @@ def nextnonexistent(f):
 
 # Selects and saves file for extracted images
 def get_images():
-    
+
     info_box.configure(state="normal")
     info_box.insert("end", f"Get Images option selected\n")
     info_box.configure(state="disabled")
@@ -83,16 +83,20 @@ def get_images():
     image_info()
 
 def rename_files():
-    # code to rename files goes here
-    pass
+    info_box.configure(state="normal")
+    info_box.insert("end", f"Rename files option selected\n")
+    info_box.configure(state="disabled")
+    
 
 def get_building_data():
-    # code to get building data goes here
-    pass
+    info_box.configure(state="normal")
+    info_box.insert("end", f"Get Building Data option selected\n")
+    info_box.configure(state="disabled")
 
 def get_survey_data():
-    # code to get survey data goes here
-    pass
+    info_box.configure(state="normal")
+    info_box.insert("end", f"Get Survey Data option selected\n")
+    info_box.configure(state="disabled")
 
 def on_menu_select(selection):
     if selection == "Get Images":
