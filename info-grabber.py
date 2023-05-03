@@ -82,12 +82,6 @@ def get_images():
     info_box.configure(state="normal")
     image_info()
 
-def rename_files():
-    info_box.configure(state="normal")
-    info_box.insert("end", f"Rename files option selected\n")
-    info_box.configure(state="disabled")
-    
-
 def get_building_data():
     info_box.configure(state="normal")
     info_box.insert("end", f"Get Building Data option selected\n")
@@ -101,8 +95,6 @@ def get_survey_data():
 def on_menu_select(selection):
     if selection == "Get Images":
         get_images()
-    elif selection == "Rename Files":
-        rename_files()
     elif selection == "Get Building Data":
         get_building_data()
     elif selection == "Get Survey Data":
@@ -113,7 +105,7 @@ frame = customtkinter.CTkFrame(master = root)
 frame.pack(pady = 10, padx = 10, fill = "both", expand = True)
 
 menu_var = customtkinter.CTk
-option_menu = customtkinter.CTkOptionMenu(frame, values = ["Get Images", "Rename Files", "Get Building Data", "Get Survey Data"], anchor="center",width = 600, command = on_menu_select, )
+option_menu = customtkinter.CTkOptionMenu(frame, values = ["Get Images", "Get Building Data", "Get Survey Data"], anchor="center",width = 600, command = on_menu_select, )
 option_menu.pack(pady = 5, padx = 10)
 
 text_box = customtkinter.CTkTextbox(master = frame, width = 400)
