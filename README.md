@@ -9,7 +9,7 @@ Info-Grabber has many capabilities, including:
 ![Info-Grabber in action](media\info-grabber.gif)
 ---
 ## Tools & Technologies <br>
-<img height="32" width="32" src="media/python.svg"/> <img height="32" width="140" src="media\custom-tkinter-logo.png"/>
+<img height="32" width="32" src="media/python.svg"/> <img height="32" width="140" src="media/custom-tkinter-logo.png"/>
 
 ---
 ## Requirements
