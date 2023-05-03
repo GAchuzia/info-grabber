@@ -228,6 +228,7 @@ info_box.configure(state="disabled")
 root.mainloop()
 
 '''
+Old Renaming File function, removed from application
 
 # Renames selected files
 def renameFile():
@@ -274,6 +275,4 @@ input_path_area.grid(column = 0, row = 3, pady=2, padx=10, sticky='nsew', column
 renameFileBtn = tk.Button(root, textvariable = renameFileText, command = renameFile,font = "Calibri", bg = "#007940", fg = "white", height = 2, width = 64 )
 renameFileText.set("Rename File(s)")
 renameFileBtn.grid(column = 0, row = 4, pady=10, padx=6,  columnspan=2)
-
-root.mainloop() #Also manages all tkinter components, do NOT put any code below this: it won't work
 '''
