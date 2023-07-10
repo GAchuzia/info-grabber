@@ -21,4 +21,4 @@ Info-Grabber has many capabilities, including:
 ---
 
 **Disclaimer** ⚠️<br>
-The application is specifically taylored to extracting information from Roof Maintenance Solutions drone survey reports and will most likely be ineffective when paired with other docx files.
+The application is specifically tailored to extracting information from Roof Maintenance Solutions drone survey reports and will most likely be ineffective when paired with other docx files.
